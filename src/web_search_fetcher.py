@@ -16,28 +16,77 @@ def get_curated_news() -> list[dict]:
     return [
         {
             "title": "Madrigal Expands MASH Pipeline with $4.4B siRNA Licensing Deal with Ribo/Ribocure",
-            "link": "https://www.globenewswire.com/news-release/2026/02/11/3236027/0/en/Madrigal-Expands-its-MASH-Pipeline-with-Exclusive-Global-Licensing-Agreement-for-Six-Preclinical-siRNA-Programs.html",
+            "link": "https://www.fiercebiotech.com/biotech/madrigal-pens-44b-deal-ribos-sirna-programs-latest-rezdiffra-mash-play",
             "description": (
                 "Madrigal Pharmaceuticals announced an exclusive global license agreement with "
                 "Suzhou Ribo Life Science and Ribocure Pharmaceuticals for six preclinical siRNA "
-                "programs. The deal includes a $60M upfront payment with potential milestone payments "
-                "up to $4.4B. siRNAs offer precision gene silencing to complement Rezdiffra's "
-                "therapeutic effects. IND-enabling activities begin in 2026."
+                "programs targeting MASH disease drivers. The deal includes a $60M upfront payment "
+                "with potential milestone payments up to $4.4B plus royalties. siRNAs offer precision "
+                "gene silencing to complement Rezdiffra's therapeutic effects. IND-enabling activities "
+                "begin in 2026. Madrigal now has 10+ programs targeting different MASH drivers, "
+                "cementing its position as the market leader in the space."
             ),
             "date": "2026-02-11",
-            "source": "GlobeNewsWire",
+            "source": "Fierce Biotech",
             "type": "industry_news",
         },
         {
-            "title": "Madrigal to Release Q4 and Full-Year 2025 Financial Results on February 19",
-            "link": "https://www.globenewswire.com/news-release/2026/02/02/3230242/0/en/Madrigal-Pharmaceuticals-to-Release-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Host-Webcast-on-February-19-2026.html",
+            "title": "Survodutide Receives FDA Breakthrough Therapy Designation for MASH; Phase 3 LIVERAGE Trials Underway",
+            "link": "https://www.pharmacytimes.com/view/fda-grants-survodutide-breakthrough-therapy-designation-for-treatment-of-adults-with-mash",
             "description": (
-                "Madrigal Pharmaceuticals will release fourth-quarter and full-year 2025 financial "
-                "results on February 19, 2026. Rezdiffra brought in $287.3M in Q3 2025. "
-                "GlobalData estimates Rezdiffra sales could reach $6.9 billion by 2032."
+                "Boehringer Ingelheim and Zealand Pharma's survodutide, a dual GLP-1/glucagon "
+                "receptor agonist, received FDA Breakthrough Therapy Designation for MASH. Phase 2 "
+                "data showed up to 83% of patients achieved MASH improvement without worsening "
+                "fibrosis (vs 18.2% placebo, p<0.0001), and 52.3% achieved fibrosis improvement. "
+                "Phase 3 LIVERAGE trials (F2-F3 and F4 cirrhosis) are now recruiting, evaluating "
+                "MASH resolution, fibrosis improvement, and long-term liver-related outcomes."
             ),
-            "date": "2026-02-02",
-            "source": "GlobeNewsWire",
+            "date": "2026-02-09",
+            "source": "Pharmacy Times / BioPharma Dive",
+            "type": "industry_news",
+        },
+        {
+            "title": "Altimmune's Pemvidutide Wins FDA Breakthrough Therapy Designation for MASH After Strong Phase 2b Results",
+            "link": "https://ir.altimmune.com/news-releases/news-release-details/altimmune-receives-fda-breakthrough-therapy-designation",
+            "description": (
+                "The FDA granted Breakthrough Therapy Designation to Altimmune's pemvidutide, "
+                "a balanced 1:1 glucagon/GLP-1 dual receptor agonist, for MASH treatment. "
+                "48-week IMPACT Phase 2b data: 32.4% of patients on 1.8mg achieved combined "
+                "ELF + LSM improvement vs 3.2% placebo (p<0.0001). Liver fat reduced 54.7% "
+                "(vs 8.2% placebo). ALT reduced by -37.4 IU/L. Phase 3 planned for 2026."
+            ),
+            "date": "2026-01-05",
+            "source": "Altimmune IR / GlobeNewsWire",
+            "type": "industry_news",
+        },
+        {
+            "title": "Madrigal Licenses Pfizer's Ervogastat (DGAT-2 Inhibitor) for $50M to Build MASH Combo Strategy",
+            "link": "https://ir.madrigalpharma.com/news-releases/news-release-details/madrigal-expands-its-mash-pipeline-exclusive-global-license",
+            "description": (
+                "Madrigal acquired exclusive global rights to ervogastat, a Phase 2 oral DGAT-2 "
+                "inhibitor, from Pfizer for $50M upfront plus milestones. Phase 2 data: 72% of "
+                "patients achieved >=30% liver fat reduction and 61% achieved >=50% reduction. "
+                "Ervogastat blocks triglyceride assembly — a complementary mechanism to Rezdiffra's "
+                "THR-beta pathway. Drug-drug interaction study with Rezdiffra planned for 2026, "
+                "followed by FDA consultation on Phase 2 combo trial design."
+            ),
+            "date": "2026-01-09",
+            "source": "Fierce Biotech",
+            "type": "industry_news",
+        },
+        {
+            "title": "MIT Develops New Tissue Models Revealing Why Resmetirom Fails in ~70% of MASH Patients",
+            "link": "https://news.mit.edu/2026/new-tissue-models-could-help-researchers-develop-drugs-liver-disease-0203",
+            "description": (
+                "MIT researchers developed advanced liver tissue models showing resmetirom can "
+                "induce an inflammatory response in liver tissue, potentially explaining why "
+                "Rezdiffra is only effective in ~30% of MASH patients. With 100M+ Americans "
+                "affected by MASLD, researchers stress the need for multiple drug classes: "
+                "'You're never declaring victory with liver disease with one drug or one class "
+                "of drugs.' Findings highlight the importance of combination approaches."
+            ),
+            "date": "2026-02-03",
+            "source": "MIT News",
             "type": "industry_news",
         },
         {
@@ -47,7 +96,8 @@ def get_curated_news() -> list[dict]:
                 "Semaglutide (Wegovy) received accelerated FDA approval for treating MASH, making it "
                 "the first GLP-1 receptor agonist indicated for this condition. This adds to Wegovy's "
                 "existing approvals for obesity and cardiovascular disease, and positions it as a direct "
-                "competitor to Madrigal's Rezdiffra."
+                "competitor to Madrigal's Rezdiffra. The MASH market is projected to reach $20.3B by "
+                "2032 (CAGR 38.2%), with Rezdiffra alone forecast at $6.9B."
             ),
             "date": "2026-02-01",
             "source": "Prime Therapeutics",
@@ -60,7 +110,8 @@ def get_curated_news() -> list[dict]:
                 "Madrigal announced positive two-year results from the Phase 3 MAESTRO-NAFLD-1 trial "
                 "open-label F4c arm. Patients (n=122) achieved significant improvements in liver "
                 "stiffness, liver fat, fibrosis biomarkers, liver volume, and portal hypertension "
-                "risk scores. Treatment discontinuation reversed gains; resumption restored improvements."
+                "risk scores. Treatment discontinuation reversed gains; resumption restored improvements. "
+                "Rezdiffra Q3 2025 sales: $287.3M. Awareness has driven a 50% spike in MASH diagnoses."
             ),
             "date": "2026-01-28",
             "source": "Madrigal Pharmaceuticals IR",
@@ -79,16 +130,16 @@ def get_curated_news() -> list[dict]:
             "type": "industry_news",
         },
         {
-            "title": "HepQuant DuO Reveals Functional Heterogeneity in MASH at MASH-TAG 2026",
-            "link": "https://www.prweb.com/releases/2026-mash-tag-oral-presentation-hepquant-duo-reveals-functional-and-physiological-heterogeneity-to-support-enhanced-clinical-trial-design-302658684.html",
+            "title": "Madrigal Q4/FY2025 Earnings on Feb 19 — Rezdiffra Commercial Momentum in Focus",
+            "link": "https://www.globenewswire.com/news-release/2026/02/02/3230242/0/en/Madrigal-Pharmaceuticals-to-Release-Fourth-Quarter-and-Full-Year-2025-Financial-Results-and-Host-Webcast-on-February-19-2026.html",
             "description": (
-                "At the 2026 MASH-TAG conference (Jan 8-10, Park City, UT), HepQuant presented data "
-                "showing its DuO diagnostic test reveals significant functional heterogeneity and "
-                "physiological impairment missed by standard testing in MASH patients. This could "
-                "improve clinical trial subject selection and study design."
+                "Madrigal Pharmaceuticals will release Q4 and full-year 2025 financial results on "
+                "February 19, 2026. Key watch items: Rezdiffra revenue trajectory (Q3: $287.3M), "
+                "prescriber base growth (10,000+ prescribers, 29,500 patients reached), pipeline "
+                "investment spending on siRNA, ervogastat, and MGL-2086 programs."
             ),
-            "date": "2026-01-10",
-            "source": "PRWeb / MASH-TAG 2026",
+            "date": "2026-02-02",
+            "source": "GlobeNewsWire",
             "type": "industry_news",
         },
         {
@@ -123,6 +174,36 @@ def get_curated_publications() -> list[dict]:
             "source": "New England Journal of Medicine",
             "authors": "Newsome PN, et al.",
             "pub_types": ["Clinical Trial, Phase III", "Randomized Controlled Trial"],
+            "type": "publication",
+        },
+        {
+            "title": "A Phase 2 Randomized Trial of Survodutide in MASH and Fibrosis",
+            "link": "https://pubmed.ncbi.nlm.nih.gov/38847460/",
+            "description": (
+                "Phase 2 RCT of survodutide (dual GLP-1/glucagon agonist) in MASH with F1-F3 fibrosis. "
+                "83% of patients on highest dose achieved MASH improvement without worsening fibrosis "
+                "vs 18.2% placebo (p<0.0001). Fibrosis improvement in 52.3% vs 25.8% placebo. "
+                "Results support Phase 3 advancement. Published in NEJM."
+            ),
+            "date": "2025",
+            "source": "New England Journal of Medicine",
+            "authors": "Sanyal AJ, et al.",
+            "pub_types": ["Clinical Trial, Phase II", "Randomized Controlled Trial"],
+            "type": "publication",
+        },
+        {
+            "title": "Pemvidutide IMPACT Phase 2b Trial — 24-Week Efficacy and Safety Data in MASH",
+            "link": "https://ir.altimmune.com/news-releases/news-release-details/altimmune-announces-publication-impact-phase-2b-trial-data",
+            "description": (
+                "Published in The Lancet. 212 patients with biopsy-confirmed MASH F2-F3. "
+                "Pemvidutide (1:1 glucagon/GLP-1 dual agonist) achieved MASH resolution without "
+                "worsening fibrosis at 24 weeks, with substantial liver fat reduction and improvements "
+                "in non-invasive fibrosis markers (ELF, LSM). 48-week data showed continued benefit."
+            ),
+            "date": "2025 Nov",
+            "source": "The Lancet",
+            "authors": "Altimmune / Garg V, et al.",
+            "pub_types": ["Clinical Trial, Phase II", "Randomized Controlled Trial"],
             "type": "publication",
         },
         {
@@ -186,64 +267,14 @@ def get_curated_publications() -> list[dict]:
             "pub_types": ["Review"],
             "type": "publication",
         },
-        {
-            "title": "Therapeutic Landscape of Metabolic Dysfunction-Associated Steatohepatitis (MASH)",
-            "link": "https://pubmed.ncbi.nlm.nih.gov/39609545/",
-            "description": (
-                "Overview of the current and emerging treatment landscape for MASH, covering approved "
-                "agents and late-phase pipeline candidates. Addresses the potential for combination "
-                "therapies to mirror Type 2 Diabetes treatment patterns with multiple mechanisms of action."
-            ),
-            "date": "2025",
-            "source": "PubMed",
-            "authors": "Noureddin M, et al.",
-            "pub_types": ["Review"],
-            "type": "publication",
-        },
     ]
 
 
 def get_curated_trials() -> list[dict]:
-    """Return curated clinical trial items gathered from web search."""
+    """Return curated clinical trial items gathered from web search — actively recruiting only."""
     return [
         {
-            "title": "Rezdiffra (Resmetirom) Phase 3 Outcomes Trial in Compensated MASH Cirrhosis (F4c)",
-            "link": "https://clinicaltrials.gov/study/NCT04197479",
-            "nct_id": "NCT04197479",
-            "status": "Active, not recruiting",
-            "sponsor": "Madrigal Pharmaceuticals",
-            "phase": "Phase 3",
-            "conditions": ["MASH", "Compensated Cirrhosis"],
-            "interventions": ["Resmetirom (Rezdiffra)"],
-            "description": (
-                "Ongoing Phase 3 outcomes trial evaluating Rezdiffra for compensated MASH cirrhosis. "
-                "Positive 2-year open-label data showed improvements in liver stiffness, fat, fibrosis "
-                "biomarkers, and portal hypertension risk. Full approval readout expected 2026-2027."
-            ),
-            "date": "2026-02-01",
-            "source": "ClinicalTrials.gov",
-            "type": "clinical_trial",
-        },
-        {
-            "title": "ESSENCE: Semaglutide vs Placebo in MASH with Fibrosis (F2-F3)",
-            "link": "https://clinicaltrials.gov/study/NCT04822181",
-            "nct_id": "NCT04822181",
-            "status": "Active, not recruiting",
-            "sponsor": "Novo Nordisk",
-            "phase": "Phase 3",
-            "conditions": ["MASH", "Liver Fibrosis"],
-            "interventions": ["Semaglutide 2.4 mg SC weekly"],
-            "description": (
-                "Ongoing 240-week Phase 3 trial in 1,197 patients with MASH F2-F3. 72-week interim: "
-                "62.9% MASH resolution (vs 34.3% placebo), -10.5% body weight change. "
-                "Now also has accelerated FDA approval for MASH indication."
-            ),
-            "date": "2026-01-15",
-            "source": "ClinicalTrials.gov",
-            "type": "clinical_trial",
-        },
-        {
-            "title": "Pegozafermin Phase 3 Trial in MASH with Fibrosis",
+            "title": "Pegozafermin Phase 3 Trial in MASH with Fibrosis (F2-F3)",
             "link": "https://clinicaltrials.gov/study/NCT06216067",
             "nct_id": "NCT06216067",
             "status": "Recruiting",
@@ -253,15 +284,16 @@ def get_curated_trials() -> list[dict]:
             "interventions": ["Pegozafermin (FGF21 analogue)"],
             "description": (
                 "Phase 3 trial of pegozafermin, an FGF21 analogue with Breakthrough Therapy "
-                "designation, for MASH with fibrosis. Differentiated mechanism targeting metabolic "
-                "regulation via fibroblast growth factor 21 pathway."
+                "designation, for MASH with F2-F3 fibrosis. Differentiated mechanism targeting "
+                "metabolic regulation via fibroblast growth factor 21 pathway. 89bio is "
+                "aiming to stand out against GLP-1 and THR-beta agonists."
             ),
             "date": "2026-02-01",
             "source": "ClinicalTrials.gov",
             "type": "clinical_trial",
         },
         {
-            "title": "Survodutide Phase 3 Trial in MASH (VANQUISH Program)",
+            "title": "Survodutide Phase 3 LIVERAGE Trial in MASH with Fibrosis (F2-F3)",
             "link": "https://clinicaltrials.gov/study/NCT06528808",
             "nct_id": "NCT06528808",
             "status": "Recruiting",
@@ -270,11 +302,31 @@ def get_curated_trials() -> list[dict]:
             "conditions": ["MASH", "Liver Fibrosis"],
             "interventions": ["Survodutide (GLP-1/glucagon dual agonist)"],
             "description": (
-                "Phase 3 trial of survodutide, a dual GLP-1/glucagon receptor agonist. Phase 2 "
-                "showed up to 83% of participants had improved liver fat and inflammation without "
-                "worsening fibrosis. Completion estimated June 2029."
+                "Phase 3 LIVERAGE trial of survodutide, a dual GLP-1/glucagon receptor agonist "
+                "with FDA Breakthrough Therapy and Fast Track designations. Phase 2: 83% MASH "
+                "improvement vs 18.2% placebo; 52.3% fibrosis improvement. Evaluating MASH "
+                "resolution, fibrosis improvement, and long-term liver outcomes. "
+                "Completion estimated June 2029."
             ),
-            "date": "2026-01-20",
+            "date": "2026-02-09",
+            "source": "ClinicalTrials.gov",
+            "type": "clinical_trial",
+        },
+        {
+            "title": "Survodutide Phase 3 Trial in Obesity with Presumed MASH",
+            "link": "https://clinicaltrials.gov/study/NCT06309992",
+            "nct_id": "NCT06309992",
+            "status": "Recruiting",
+            "sponsor": "Boehringer Ingelheim",
+            "phase": "Phase 3",
+            "conditions": ["Obesity", "MASH"],
+            "interventions": ["Survodutide (GLP-1/glucagon dual agonist)"],
+            "description": (
+                "Phase 3 trial evaluating survodutide in adults living with obesity or overweight "
+                "and confirmed or presumed MASH. Assessing liver fat reduction and weight loss. "
+                "Part of the broader LIVERAGE program."
+            ),
+            "date": "2026-02-09",
             "source": "ClinicalTrials.gov",
             "type": "clinical_trial",
         },
@@ -289,10 +341,28 @@ def get_curated_trials() -> list[dict]:
             "interventions": ["Retatrutide (triple GIP/GLP-1/glucagon agonist)"],
             "description": (
                 "Phase 3 trial of retatrutide, a triple receptor agonist (GIP, GLP-1, glucagon). "
-                "Initial findings showed ~85% of obese participants with fatty liver disease had "
-                "significant liver fat reduction."
+                "Phase 2 data showed ~85% of obese participants with fatty liver disease had "
+                "significant liver fat reduction. First triple agonist in MASH Phase 3."
             ),
             "date": "2026-01-10",
+            "source": "ClinicalTrials.gov",
+            "type": "clinical_trial",
+        },
+        {
+            "title": "Pegozafermin Phase 3 Trial in Compensated MASH Cirrhosis (F4)",
+            "link": "https://clinicaltrials.gov/study/NCT05500222",
+            "nct_id": "NCT05500222",
+            "status": "Recruiting",
+            "sponsor": "89bio, Inc.",
+            "phase": "Phase 3",
+            "conditions": ["MASH", "Compensated Cirrhosis"],
+            "interventions": ["Pegozafermin (FGF21 analogue)"],
+            "description": (
+                "Phase 3 trial evaluating pegozafermin in patients with compensated cirrhosis "
+                "due to MASH (biopsy-confirmed F4 fibrosis). Assessing efficacy and safety of "
+                "FGF21-based therapy in the most advanced non-decompensated MASH population."
+            ),
+            "date": "2026-02-01",
             "source": "ClinicalTrials.gov",
             "type": "clinical_trial",
         },
