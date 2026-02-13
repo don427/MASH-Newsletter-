@@ -98,5 +98,10 @@ WEB_SEARCH_QUERIES = [
     "MASH FDA approval resmetirom obeticholic acid",
 ]
 
+# --- Branding / Images ---
+ASSETS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "assets")
+HEADSHOT_PATH = os.path.join(ASSETS_DIR, "dr_lazas_headshot.jpg")
+LOGO_PATH = os.path.join(ASSETS_DIR, "dhr_logo.png")
+
 # --- Output ---
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "output")

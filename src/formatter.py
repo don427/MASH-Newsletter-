@@ -1,16 +1,31 @@
 """Formats collected content into the newsletter HTML and plain-text versions."""
 
+import base64
+import mimetypes
 import os
 import logging
 from datetime import datetime, timedelta, timezone
 
 from jinja2 import Environment, FileSystemLoader
 
-from src.config import OUTPUT_DIR
+from src.config import OUTPUT_DIR, HEADSHOT_PATH, LOGO_PATH
 
 logger = logging.getLogger(__name__)
 
 TEMPLATE_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "templates")
+
+
+def _image_to_data_uri(filepath: str) -> str:
+    """Read an image file and return a base64 data URI for embedding in HTML."""
+    if not os.path.isfile(filepath):
+        logger.warning("Image not found: %s", filepath)
+        return ""
+    mime, _ = mimetypes.guess_type(filepath)
+    if not mime:
+        mime = "image/png"
+    with open(filepath, "rb") as f:
+        encoded = base64.b64encode(f.read()).decode("ascii")
+    return f"data:{mime};base64,{encoded}"
 
 
 def _generate_executive_summary(
@@ -93,6 +108,10 @@ def render_newsletter(
 
     executive_summary = _generate_executive_summary(news, publications, trials)
 
+    # Encode branding images as data URIs for email-safe embedding
+    headshot_uri = _image_to_data_uri(HEADSHOT_PATH)
+    logo_uri = _image_to_data_uri(LOGO_PATH)
+
     html = template.render(
         title=f"MASH Weekly Intelligence - {now.strftime('%b %d, %Y')}",
         date_range=date_range,
@@ -101,6 +120,8 @@ def render_newsletter(
         news_articles=news,
         publications=publications,
         trials=trials,
+        headshot_uri=headshot_uri,
+        logo_uri=logo_uri,
     )
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -122,6 +143,8 @@ def render_plain_text(
     lines = []
     lines.append("=" * 60)
     lines.append("MASH WEEKLY INTELLIGENCE")
+    lines.append("From the Desk of Dr. Don Lazas")
+    lines.append("Digestive Health Research | Nashville, TN")
     lines.append(f"Issue #{_issue_number()} - {datetime.now(timezone.utc).strftime('%B %d, %Y')}")
     lines.append("=" * 60)
     lines.append("")
