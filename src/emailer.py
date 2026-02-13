@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
+import re
 import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from email.message import EmailMessage
 from datetime import datetime, timezone
 
 from src.config import (
@@ -14,6 +14,11 @@ from src.config import (
 )
 
 logger = logging.getLogger(__name__)
+
+
+def _clean(text: str) -> str:
+    """Replace non-breaking spaces and other common non-ASCII whitespace."""
+    return re.sub(r"[\xa0\u200b\u200c\u200d\ufeff]", " ", text)
 
 
 def send_newsletter(
@@ -47,27 +52,33 @@ def send_newsletter(
         date_str = datetime.now(timezone.utc).strftime("%b %d, %Y")
         subject = f"MASH Weekly Intelligence - {date_str}"
 
-    # Sanitise non-breaking spaces (\xa0) that creep in from web-scraped
-    # content – they cause 'ascii' codec errors during message serialisation.
-    html_content = html_content.replace("\xa0", " ")
-    plain_text = plain_text.replace("\xa0", " ")
+    # Sanitise every string that touches the email – non-breaking spaces (\xa0)
+    # and other invisible Unicode can creep in from web-scraped content, secrets
+    # copy-pasted from web pages, or template rendering.
+    html_content = _clean(html_content)
+    plain_text = _clean(plain_text)
+    subject = _clean(subject)
+    smtp_user = _clean(SMTP_USER).strip()
+    smtp_pass = _clean(SMTP_PASSWORD)
+    sender = _clean(SENDER_EMAIL or SMTP_USER).strip()
+    recipient = _clean(recipient).strip()
 
-    msg = MIMEMultipart("alternative")
+    # Use modern EmailMessage API with UTF-8 support – avoids the compat32
+    # policy's ASCII-only header serialisation that caused the \xa0 crash.
+    msg = EmailMessage()
     msg["Subject"] = subject
-    msg["From"] = SENDER_EMAIL or SMTP_USER
+    msg["From"] = sender
     msg["To"] = recipient
-
-    # Attach plain text (fallback) and HTML (preferred)
-    msg.attach(MIMEText(plain_text, "plain", "utf-8"))
-    msg.attach(MIMEText(html_content, "html", "utf-8"))
+    msg.set_content(plain_text, subtype="plain")
+    msg.add_alternative(html_content, subtype="html")
 
     try:
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=30) as server:
             server.ehlo()
             server.starttls()
             server.ehlo()
-            server.login(SMTP_USER, SMTP_PASSWORD)
-            server.sendmail(SMTP_USER, [recipient], msg.as_bytes())
+            server.login(smtp_user, smtp_pass)
+            server.sendmail(smtp_user, [recipient], msg.as_bytes())
         logger.info("Newsletter emailed to %s", recipient)
         return True
     except smtplib.SMTPAuthenticationError as e:
