@@ -82,9 +82,11 @@ def generate_and_send(
         if sent:
             logger.info("Newsletter emailed to %s", RECIPIENT_EMAIL)
         else:
-            logger.warning(
-                "Email not sent (check SMTP config). Newsletter saved to: %s", filepath
+            logger.error(
+                "EMAIL FAILED - check SMTP secrets in GitHub repo settings. "
+                "Newsletter saved to: %s", filepath
             )
+            raise RuntimeError("Newsletter email failed to send. Check the logs above for details.")
 
     return filepath
 
