@@ -47,6 +47,11 @@ def send_newsletter(
         date_str = datetime.now(timezone.utc).strftime("%b %d, %Y")
         subject = f"MASH Weekly Intelligence - {date_str}"
 
+    # Sanitise non-breaking spaces (\xa0) that creep in from web-scraped
+    # content – they cause 'ascii' codec errors during message serialisation.
+    html_content = html_content.replace("\xa0", " ")
+    plain_text = plain_text.replace("\xa0", " ")
+
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"] = SENDER_EMAIL or SMTP_USER
@@ -62,7 +67,7 @@ def send_newsletter(
             server.starttls()
             server.ehlo()
             server.login(SMTP_USER, SMTP_PASSWORD)
-            server.sendmail(SMTP_USER, [recipient], msg.as_string())
+            server.sendmail(SMTP_USER, [recipient], msg.as_bytes())
         logger.info("Newsletter emailed to %s", recipient)
         return True
     except smtplib.SMTPAuthenticationError as e:
