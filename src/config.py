@@ -37,13 +37,19 @@ CTGOV_SEARCH_TERMS = [
 CTGOV_MAX_RESULTS = 15
 
 # --- Content relevance filters ---
-# Articles MUST contain at least one of these terms to be included
+# Articles MUST contain at least one of these DISEASE terms to be included.
+# These are liver/MASH-specific — no ambiguous drug names that also cover
+# obesity, diabetes, etc.
 RELEVANCE_REQUIRED_KEYWORDS = [
     "MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD", "NAFLD",
-    "hepatic steatosis", "liver fibrosis", "rezdiffra", "resmetirom",
-    "semaglutide", "tirzepatide", "efruxifermin", "pegozafermin",
-    "survodutide", "retatrutide",
+    "hepatic steatosis", "liver fibrosis", "hepatic fibrosis",
+    "rezdiffra", "resmetirom",       # MASH-only drugs (safe to include)
+    "efruxifermin", "pegozafermin",   # FGF21 analogues primarily for MASH
 ]
+# NOTE: semaglutide, tirzepatide, survodutide, retatrutide are intentionally
+# excluded — they have major non-MASH indications (obesity, T2D) and would
+# pull in irrelevant articles.  Articles about those drugs for MASH will still
+# match because they'll also mention "MASH", "NASH", "fatty liver", etc.
 
 # Articles containing these terms are excluded (animal/preclinical/basic science)
 EXCLUSION_KEYWORDS = [

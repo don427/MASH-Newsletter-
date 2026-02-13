@@ -11,6 +11,15 @@ from dateutil import parser as dateparser
 
 from src.config import NEWS_FEEDS, LOOKBACK_DAYS, RELEVANCE_REQUIRED_KEYWORDS, EXCLUSION_KEYWORDS
 
+# Disease terms that MUST appear in the article title for high-confidence filtering.
+# This prevents articles that only mention MASH in passing (deep in the body text)
+# from making it into the newsletter.
+_TITLE_DISEASE_TERMS = [
+    "MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD", "NAFLD",
+    "hepatic steatosis", "liver fibrosis", "hepatic fibrosis",
+    "rezdiffra", "resmetirom", "efruxifermin", "pegozafermin",
+]
+
 logger = logging.getLogger(__name__)
 
 REQUEST_TIMEOUT = 15
@@ -105,6 +114,11 @@ def fetch_rss_feed(feed_config: dict, cutoff: datetime) -> list[dict]:
 
         # Strict relevance check: must mention MASH/NASH/fatty liver
         if not _is_relevant(combined):
+            continue
+
+        # Title must contain a liver-disease keyword to avoid articles that
+        # only mention MASH in passing deep in the body text
+        if not _matches_keywords(title, _TITLE_DISEASE_TERMS):
             continue
 
         # Exclude animal studies, cell biology, phase 1

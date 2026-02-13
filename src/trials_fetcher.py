@@ -5,7 +5,10 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 
-from src.config import CTGOV_API_BASE, CTGOV_SEARCH_TERMS, CTGOV_MAX_RESULTS, LOOKBACK_DAYS, TRIAL_INCLUDED_PHASES
+from src.config import (
+    CTGOV_API_BASE, CTGOV_SEARCH_TERMS, CTGOV_MAX_RESULTS,
+    LOOKBACK_DAYS, TRIAL_INCLUDED_PHASES, RELEVANCE_REQUIRED_KEYWORDS,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -116,6 +119,16 @@ def fetch_all_trials(lookback_days: int = LOOKBACK_DAYS) -> list[dict]:
                 seen_nct.add(trial["nct_id"])
                 all_trials.append(trial)
 
-    all_trials.sort(key=lambda x: x["date"], reverse=True)
-    logger.info("Total unique trials: %d", len(all_trials))
-    return all_trials
+    # Post-fetch relevance filter: title or conditions must mention MASH/NASH/liver
+    filtered = []
+    for trial in all_trials:
+        text = f"{trial['title']} {' '.join(trial.get('conditions', []))} {trial.get('description', '')}"
+        text_lower = text.lower()
+        if any(kw.lower() in text_lower for kw in RELEVANCE_REQUIRED_KEYWORDS):
+            filtered.append(trial)
+        else:
+            logger.info("Excluded irrelevant trial: %s", trial["title"])
+
+    filtered.sort(key=lambda x: x["date"], reverse=True)
+    logger.info("Total unique trials after filtering: %d (excluded %d)", len(filtered), len(all_trials) - len(filtered))
+    return filtered
