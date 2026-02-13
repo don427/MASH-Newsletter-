@@ -1,0 +1,39 @@
+name: Weekly MASH Newsletter
+
+on:
+  schedule:
+    # Every Monday at 12:00 UTC (7 AM ET / 8 AM ET during DST)
+    - cron: "0 12 * * 1"
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate and email newsletter
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: python run.py --curated
+
+      - name: Upload newsletter artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newsletter-${{ github.run_id }}
+          path: output/
+          retention-days: 30

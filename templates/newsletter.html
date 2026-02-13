@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }}</title>
+<style>
+  /* Reset & base */
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px 0;
+    color: #1a202c;
+    -webkit-font-smoothing: antialiased;
+  }
+  * { box-sizing: border-box; }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0f2b46 0%, #1a5276 40%, #2980b9 100%);
+    color: #ffffff;
+    padding: 40px 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -30px;
+    width: 160px;
+    height: 160px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 50%;
+  }
+  .header-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+  }
+  .header .subtitle {
+    font-size: 15px;
+    opacity: 0.8;
+    margin: 0 0 4px 0;
+    font-weight: 400;
+  }
+  .header .date-line {
+    font-size: 13px;
+    opacity: 0.6;
+    margin-top: 12px;
+    font-weight: 500;
+  }
+
+  /* From the Desk banner */
+  .desk-banner {
+    background: linear-gradient(135deg, #fefefe 0%, #f8fafc 100%);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 14px 32px;
+  }
+  .desk-top-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .desk-photo {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2980b9;
+    box-shadow: 0 2px 6px rgba(41,128,185,0.15);
+    flex-shrink: 0;
+  }
+  .desk-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .desk-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #94a3b8;
+    margin-bottom: 1px;
+  }
+  .desk-name {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1a202c;
+    margin: 0 0 1px 0;
+    line-height: 1.3;
+  }
+  .desk-org {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+    margin: 0;
+  }
+  .desk-logo {
+    height: 48px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 18px 12px;
+    border-right: 1px solid #e2e8f0;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #718096;
+  }
+  .stat-news .stat-number { color: #2b6cb0; }
+  .stat-pubs .stat-number { color: #9b59b6; }
+  .stat-trials .stat-number { color: #27ae60; }
+
+  /* Summary */
+  .summary-box {
+    margin: 24px 28px;
+    background: linear-gradient(135deg, #ebf5fb 0%, #f4ecf7 100%);
+    border-radius: 10px;
+    padding: 22px 24px;
+    border-left: 5px solid #2980b9;
+  }
+  .summary-box h2 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a5276;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .summary-box p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #34495e;
+  }
+
+  /* Sections */
+  .section {
+    padding: 0 28px 20px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .section-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .icon-news { background: #dbeafe; }
+  .icon-pubs { background: #ede9fe; }
+  .icon-trials { background: #d1fae5; }
+  .section-header h2 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    color: #1a202c;
+  }
+  .section-count {
+    margin-left: auto;
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+
+  /* News cards */
+  .news-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    border-left: 4px solid #3b82f6;
+  }
+  .news-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+  }
+  .news-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+  .news-card h3 a {
+    color: #1e40af;
+    text-decoration: none;
+  }
+  .news-card h3 a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+
+  /* Publication cards */
+  .pub-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    background: #ffffff;
+    border-left: 4px solid #8b5cf6;
+    transition: all 0.2s ease;
+  }
+  .pub-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+  }
+  .pub-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+  .pub-card h3 a {
+    color: #6d28d9;
+    text-decoration: none;
+  }
+  .pub-card h3 a:hover {
+    text-decoration: underline;
+  }
+
+  /* Shared meta row */
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 8px;
+  }
+  .meta-row .source {
+    font-weight: 700;
+    color: #475569;
+  }
+  .meta-row .dot {
+    color: #cbd5e1;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .badge-type {
+    background: #ede9fe;
+    color: #6d28d9;
+  }
+  .badge-rct {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .desc {
+    font-size: 13px;
+    color: #4a5568;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .authors {
+    font-size: 12px;
+    color: #718096;
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* Trial cards */
+  .trial-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    background: #ffffff;
+    border-left: 4px solid #10b981;
+    transition: all 0.2s ease;
+  }
+  .trial-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+  }
+  .trial-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+  .trial-card h3 a {
+    color: #047857;
+    text-decoration: none;
+  }
+  .trial-card h3 a:hover {
+    text-decoration: underline;
+  }
+  .trial-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .trial-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+  .tag-nct {
+    background: #f1f5f9;
+    color: #334155;
+  }
+  .tag-phase {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .status-recruiting {
+    background: #d1fae5;
+    color: #065f46;
+  }
+  .status-completed {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+  .status-active {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  .status-other {
+    background: #f1f5f9;
+    color: #475569;
+  }
+  .trial-detail {
+    font-size: 13px;
+    color: #475569;
+    margin: 4px 0;
+    line-height: 1.5;
+  }
+  .trial-detail strong {
+    color: #1e293b;
+    font-weight: 600;
+  }
+
+  .empty-section {
+    font-size: 14px;
+    color: #94a3b8;
+    font-style: italic;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  /* Divider */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e2e8f0 20%, #e2e8f0 80%, transparent);
+    margin: 8px 28px;
+  }
+
+  /* Footer */
+  .footer {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #94a3b8;
+    text-align: center;
+    padding: 28px 32px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer-brand {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+  }
+  .footer a {
+    color: #93c5fd;
+    text-decoration: none;
+  }
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  .footer-disclaimer {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 11px;
+    color: #64748b;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    body { padding: 0; }
+    .container { border-radius: 0; }
+    .header { padding: 28px 20px 24px; }
+    .header h1 { font-size: 22px; }
+    .section { padding: 0 18px 16px; }
+    .summary-box { margin: 18px 18px; padding: 18px 16px; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat-item { min-width: 33%; padding: 14px 8px; }
+    .stat-number { font-size: 22px; }
+    .trial-meta { gap: 6px; }
+    .section-divider { margin: 8px 18px; }
+    .desk-banner { padding: 12px 18px; }
+    .desk-top-row { gap: 10px; }
+    .desk-photo { width: 44px; height: 44px; }
+    .desk-name { font-size: 14px; }
+    .desk-logo { height: 36px; max-width: 120px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-label">Weekly Intelligence Report</div>
+    <h1>MASH Weekly Intelligence</h1>
+    <p class="subtitle">Metabolic Dysfunction-Associated Steatohepatitis</p>
+    <p class="date-line">{{ date_range }} &#8226; Issue #{{ issue_number }}</p>
+  </div>
+
+  <!-- From the Desk Of -->
+  <div class="desk-banner">
+    <div class="desk-top-row">
+      {% if headshot_uri %}
+      <img src="{{ headshot_uri }}" alt="Dr. Don Lazas" class="desk-photo">
+      {% endif %}
+      <div class="desk-info">
+        <div class="desk-label">From the Desk of</div>
+        <p class="desk-name">Dr. Don Lazas</p>
+        <p class="desk-org">Digestive Health Research &#8226; Nashville, TN</p>
+      </div>
+      {% if logo_uri %}
+      <img src="{{ logo_uri }}" alt="Digestive Health Research" class="desk-logo">
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat-item stat-news">
+      <div class="stat-number">{{ news_articles|length }}</div>
+      <div class="stat-label">News</div>
+    </div>
+    <div class="stat-item stat-pubs">
+      <div class="stat-number">{{ publications|length }}</div>
+      <div class="stat-label">Publications</div>
+    </div>
+    <div class="stat-item stat-trials">
+      <div class="stat-number">{{ trials|length }}</div>
+      <div class="stat-label">Trial Updates</div>
+    </div>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="summary-box">
+    <h2>This Week at a Glance</h2>
+    <p>{{ executive_summary }}</p>
+  </div>
+
+  <!-- Industry News -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon icon-news">&#128240;</span>
+      <h2>Industry &amp; Pipeline News</h2>
+      <span class="section-count">{{ news_articles|length }} items</span>
+    </div>
+    {% if news_articles %}
+    {% for article in news_articles %}
+    <div class="news-card">
+      <h3><a href="{{ article.link }}">{{ article.title }}</a></h3>
+      <div class="meta-row">
+        <span class="source">{{ article.source }}</span>
+        <span class="dot">&#8226;</span>
+        <span>{{ article.date }}</span>
+      </div>
+      {% if article.description %}
+      <p class="desc">{{ article.description }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="empty-section">No new MASH industry news captured this week.</p>
+    {% endif %}
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Publications -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon icon-pubs">&#128218;</span>
+      <h2>Clinical Publications</h2>
+      <span class="section-count">{{ publications|length }} items</span>
+    </div>
+    {% if publications %}
+    {% for pub in publications %}
+    <div class="pub-card">
+      <h3><a href="{{ pub.link }}">{{ pub.title }}</a></h3>
+      <div class="meta-row">
+        <span class="source">{{ pub.source }}</span>
+        <span class="dot">&#8226;</span>
+        <span>{{ pub.date }}</span>
+        {% for ptype in pub.pub_types[:2] %}
+        {% if 'Randomized' in ptype or 'RCT' in ptype %}
+        <span class="badge badge-rct">{{ ptype }}</span>
+        {% else %}
+        <span class="badge badge-type">{{ ptype }}</span>
+        {% endif %}
+        {% endfor %}
+      </div>
+      {% if pub.authors %}
+      <p class="authors">{{ pub.authors }}</p>
+      {% endif %}
+      {% if pub.description %}
+      <p class="desc">{{ pub.description }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="empty-section">No new clinical publications found this period.</p>
+    {% endif %}
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- Clinical Trials -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon icon-trials">&#9879;</span>
+      <h2>Clinical Trial Updates</h2>
+      <span class="section-count">{{ trials|length }} items</span>
+    </div>
+    {% if trials %}
+    {% for trial in trials %}
+    <div class="trial-card">
+      <h3><a href="{{ trial.link }}">{{ trial.title }}</a></h3>
+      <div class="trial-meta">
+        <span class="trial-tag tag-nct">{{ trial.nct_id }}</span>
+        <span class="trial-tag tag-phase">{{ trial.phase }}</span>
+        {% set status_class = 'status-other' %}
+        {% if 'Recruiting' in trial.status %}{% set status_class = 'status-recruiting' %}
+        {% elif 'Completed' in trial.status %}{% set status_class = 'status-completed' %}
+        {% elif 'Active' in trial.status %}{% set status_class = 'status-active' %}{% endif %}
+        <span class="status-badge {{ status_class }}">{{ trial.status }}</span>
+      </div>
+      {% if trial.sponsor %}
+      <div class="trial-detail"><strong>Sponsor:</strong> {{ trial.sponsor }}</div>
+      {% endif %}
+      {% if trial.interventions %}
+      <div class="trial-detail"><strong>Interventions:</strong> {{ trial.interventions | join(', ') }}</div>
+      {% endif %}
+      {% if trial.description %}
+      <p class="desc" style="margin-top: 8px;">{{ trial.description }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="empty-section">No clinical trial updates captured this period.</p>
+    {% endif %}
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-brand">MASH Weekly Intelligence</div>
+    <p>Dr. Don Lazas &#8226; Digestive Health Research &#8226; Nashville, TN</p>
+    <p>Automated by NueCura Newsletter Agent</p>
+    <p>Data sourced from <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>,
+       <a href="https://clinicaltrials.gov/">ClinicalTrials.gov</a>,
+       and industry RSS feeds.</p>
+    <p>Focused on Phase 2+ clinical research with patient care utility.</p>
+    <div class="footer-disclaimer">
+      This is an automated research digest. All content is filtered for clinical relevance.<br>
+      Verify information from primary sources before clinical decision-making.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
