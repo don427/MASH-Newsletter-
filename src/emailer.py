@@ -28,10 +28,18 @@ def send_newsletter(
     Returns True if sent successfully, False otherwise.
     Requires SMTP_USER and SMTP_PASSWORD environment variables.
     """
+    # Diagnostic logging so Actions logs show exactly what's missing
+    logger.info("SMTP_SERVER: %s", SMTP_SERVER)
+    logger.info("SMTP_PORT: %s", SMTP_PORT)
+    logger.info("SMTP_USER: %s", SMTP_USER[:3] + "***" if SMTP_USER else "<empty>")
+    logger.info("SMTP_PASSWORD: %s", "****" if SMTP_PASSWORD else "<empty>")
+    logger.info("SENDER_EMAIL: %s", SENDER_EMAIL or "<empty>")
+    logger.info("Recipient: %s", recipient)
+
     if not SMTP_USER or not SMTP_PASSWORD:
-        logger.warning(
-            "SMTP credentials not configured. Set SMTP_USER and SMTP_PASSWORD "
-            "environment variables. Newsletter saved to output/ but not emailed."
+        logger.error(
+            "SMTP credentials not configured! Set SMTP_USER and SMTP_PASSWORD "
+            "as GitHub repository secrets. Newsletter saved to output/ but NOT emailed."
         )
         return False
 
@@ -57,6 +65,17 @@ def send_newsletter(
             server.sendmail(SMTP_USER, [recipient], msg.as_string())
         logger.info("Newsletter emailed to %s", recipient)
         return True
+    except smtplib.SMTPAuthenticationError as e:
+        logger.error(
+            "SMTP authentication failed: %s. "
+            "If using Gmail, you need an App Password (not your regular password). "
+            "Go to https://myaccount.google.com/apppasswords to generate one.",
+            e,
+        )
+        return False
     except smtplib.SMTPException as e:
         logger.error("Failed to send email: %s", e)
+        return False
+    except Exception as e:
+        logger.error("Unexpected error sending email: %s", e)
         return False
