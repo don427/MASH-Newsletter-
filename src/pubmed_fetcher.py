@@ -7,7 +7,10 @@ from datetime import datetime, timedelta, timezone
 import requests
 from bs4 import BeautifulSoup
 
-from src.config import PUBMED_BASE, PUBMED_SEARCH_TERMS, PUBMED_MAX_RESULTS, LOOKBACK_DAYS
+from src.config import (
+    PUBMED_BASE, PUBMED_SEARCH_TERMS, PUBMED_MAX_RESULTS, LOOKBACK_DAYS,
+    RELEVANCE_REQUIRED_KEYWORDS, EXCLUSION_KEYWORDS,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -149,6 +152,31 @@ def fetch_pubmed_details(pmids: list[str]) -> list[dict]:
     return articles
 
 
+def _is_clinically_relevant(article: dict) -> bool:
+    """Filter for clinical utility — exclude animal, cell biology, and phase 1 studies."""
+    text = f"{article['title']} {article['description']}".lower()
+
+    # Must mention MASH/NASH/fatty liver disease
+    has_relevance = any(kw.lower() in text for kw in RELEVANCE_REQUIRED_KEYWORDS)
+    if not has_relevance:
+        return False
+
+    # Exclude animal/preclinical/basic science/phase 1
+    has_exclusion = any(kw.lower() in text for kw in EXCLUSION_KEYWORDS)
+    if has_exclusion:
+        return False
+
+    # Exclude by publication type
+    excluded_pub_types = {
+        "in vitro", "animal study", "case report",
+    }
+    pub_types_lower = [pt.lower() for pt in article.get("pub_types", [])]
+    if any(exc in pt for pt in pub_types_lower for exc in excluded_pub_types):
+        return False
+
+    return True
+
+
 def fetch_all_publications(lookback_days: int = LOOKBACK_DAYS) -> list[dict]:
     """Run all configured PubMed searches and return deduplicated results."""
     mindate, maxdate = _date_range(lookback_days)
@@ -161,5 +189,13 @@ def fetch_all_publications(lookback_days: int = LOOKBACK_DAYS) -> list[dict]:
 
     logger.info("Found %d unique PMIDs across all searches", len(all_pmids))
     articles = fetch_pubmed_details(list(all_pmids))
+
+    # Post-fetch clinical relevance filter
+    before_count = len(articles)
+    articles = [a for a in articles if _is_clinically_relevant(a)]
+    filtered = before_count - len(articles)
+    if filtered:
+        logger.info("Filtered out %d non-clinical/irrelevant publications", filtered)
+
     articles.sort(key=lambda x: x["date"], reverse=True)
     return articles

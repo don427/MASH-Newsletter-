@@ -296,24 +296,6 @@ def get_curated_trials() -> list[dict]:
             "source": "ClinicalTrials.gov",
             "type": "clinical_trial",
         },
-        {
-            "title": "MGL-2086 First-in-Human Study (Oral GLP-1 RA for MASH)",
-            "link": "https://ir.madrigalpharma.com/news-releases/news-release-details/madrigal-expands-its-mash-pipeline-exclusive-global-licensing",
-            "nct_id": "TBD",
-            "status": "Not yet recruiting",
-            "sponsor": "Madrigal Pharmaceuticals",
-            "phase": "Phase 1",
-            "conditions": ["MASH"],
-            "interventions": ["MGL-2086 (oral GLP-1 RA)"],
-            "description": (
-                "Madrigal's oral GLP-1 receptor agonist MGL-2086 entering first-in-human studies "
-                "in Q2 2026. Part of Madrigal's expanding MASH pipeline beyond Rezdiffra, with "
-                "potential for combination therapy."
-            ),
-            "date": "2026-02-11",
-            "source": "Madrigal Pharmaceuticals",
-            "type": "clinical_trial",
-        },
     ]
 
 

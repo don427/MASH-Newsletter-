@@ -21,9 +21,10 @@ LOOKBACK_DAYS = 7
 # --- PubMed / NCBI ---
 PUBMED_BASE = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 PUBMED_SEARCH_TERMS = [
-    "MASH[Title/Abstract] AND (clinical trial[Publication Type] OR review[Publication Type])",
-    "metabolic dysfunction-associated steatohepatitis[Title/Abstract]",
-    "NASH steatohepatitis treatment[Title/Abstract]",
+    # Focus on human clinical studies Phase 2+, exclude animal/cell biology
+    '("MASH"[Title/Abstract] OR "metabolic dysfunction-associated steatohepatitis"[Title/Abstract]) AND ("clinical trial, phase ii"[Publication Type] OR "clinical trial, phase iii"[Publication Type] OR "clinical trial, phase iv"[Publication Type] OR "randomized controlled trial"[Publication Type] OR "meta-analysis"[Publication Type] OR "practice guideline"[Publication Type] OR "systematic review"[Publication Type]) NOT ("mice"[Title] OR "mouse"[Title] OR "murine"[Title] OR "rat"[Title] OR "rats"[Title] OR "in vitro"[Title] OR "cell line"[Title] OR "hepatocyte"[Title])',
+    '("NASH"[Title/Abstract] OR "nonalcoholic steatohepatitis"[Title/Abstract]) AND ("treatment"[Title/Abstract] OR "therapy"[Title/Abstract] OR "clinical outcome"[Title/Abstract] OR "fibrosis"[Title/Abstract]) AND "humans"[MeSH Terms] NOT ("phase 1"[Title/Abstract] OR "first-in-human"[Title/Abstract] OR "mice"[Title] OR "rodent"[Title])',
+    '("fatty liver disease"[Title/Abstract] OR "MASLD"[Title/Abstract] OR "NAFLD"[Title/Abstract]) AND ("clinical management"[Title/Abstract] OR "patient care"[Title/Abstract] OR "diagnosis"[Title/Abstract] OR "treatment guideline"[Title/Abstract]) AND "humans"[MeSH Terms]',
 ]
 PUBMED_MAX_RESULTS = 15
 
@@ -33,39 +34,60 @@ CTGOV_SEARCH_TERMS = [
     "MASH OR metabolic dysfunction-associated steatohepatitis",
     "NASH steatohepatitis",
 ]
-CTGOV_MAX_RESULTS = 10
+CTGOV_MAX_RESULTS = 15
+
+# --- Content relevance filters ---
+# Articles MUST contain at least one of these terms to be included
+RELEVANCE_REQUIRED_KEYWORDS = [
+    "MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD", "NAFLD",
+    "hepatic steatosis", "liver fibrosis", "rezdiffra", "resmetirom",
+    "semaglutide", "tirzepatide", "efruxifermin", "pegozafermin",
+    "survodutide", "retatrutide",
+]
+
+# Articles containing these terms are excluded (animal/preclinical/basic science)
+EXCLUSION_KEYWORDS = [
+    "mouse model", "murine", "rodent model", "rat model",
+    "in vitro", "cell culture", "cell line", "hepatocyte culture",
+    "zebrafish", "drosophila", "caenorhabditis",
+    "phase 1 ", "phase i ", "first-in-human",
+    "preclinical", "animal study", "animal model",
+]
+
+# Clinical trials: only include these phases (exclude Phase 1 / Early Phase 1)
+TRIAL_INCLUDED_PHASES = ["PHASE2", "PHASE3", "PHASE4", "NA"]
 
 # --- RSS / News Feeds ---
 NEWS_FEEDS = [
     {
         "name": "FiercePharma",
         "url": "https://www.fiercepharma.com/rss/xml",
-        "keywords": ["MASH", "NASH", "steatohepatitis", "liver", "fibrosis"],
+        "keywords": ["MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD"],
     },
     {
         "name": "FierceBiotech",
         "url": "https://www.fiercebiotech.com/rss/xml",
-        "keywords": ["MASH", "NASH", "steatohepatitis", "liver", "fibrosis"],
+        "keywords": ["MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD"],
     },
     {
         "name": "BioPharma Dive",
         "url": "https://www.biopharmadive.com/feeds/news/",
-        "keywords": ["MASH", "NASH", "steatohepatitis", "liver"],
+        "keywords": ["MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD"],
     },
     {
         "name": "Endpoints News",
         "url": "https://endpts.com/feed/",
-        "keywords": ["MASH", "NASH", "steatohepatitis", "liver", "fibrosis"],
+        "keywords": ["MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD"],
     },
     {
         "name": "STAT News",
         "url": "https://www.statnews.com/feed/",
-        "keywords": ["MASH", "NASH", "steatohepatitis", "liver"],
+        "keywords": ["MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD"],
     },
     {
         "name": "Healio Hepatology",
         "url": "https://www.healio.com/news/hepatology/rss",
-        "keywords": ["MASH", "NASH", "steatohepatitis", "fibrosis", "liver"],
+        "keywords": ["MASH", "NASH", "steatohepatitis", "fatty liver", "MASLD", "liver fibrosis"],
     },
 ]
 

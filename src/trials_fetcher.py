@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 
-from src.config import CTGOV_API_BASE, CTGOV_SEARCH_TERMS, CTGOV_MAX_RESULTS, LOOKBACK_DAYS
+from src.config import CTGOV_API_BASE, CTGOV_SEARCH_TERMS, CTGOV_MAX_RESULTS, LOOKBACK_DAYS, TRIAL_INCLUDED_PHASES
 
 logger = logging.getLogger(__name__)
 
@@ -17,9 +17,11 @@ HEADERS = {
 
 def fetch_trials(query: str, max_results: int, cutoff_date: str) -> list[dict]:
     """Fetch clinical trials matching the query from ClinicalTrials.gov v2 API."""
+    # Filter to Phase 2+ only via API
+    phase_filter = " OR ".join(f"AREA[Phase]{p}" for p in TRIAL_INCLUDED_PHASES if p != "NA")
     params = {
         "query.term": query,
-        "filter.advanced": f"AREA[LastUpdatePostDate]RANGE[{cutoff_date},MAX]",
+        "filter.advanced": f"AREA[LastUpdatePostDate]RANGE[{cutoff_date},MAX] AND ({phase_filter})",
         "pageSize": max_results,
         "sort": "LastUpdatePostDate:desc",
         "fields": "NCTId,BriefTitle,OverallStatus,LeadSponsorName,StartDate,LastUpdatePostDate,BriefSummary,Phase,Condition,InterventionName",
@@ -74,6 +76,11 @@ def fetch_trials(query: str, max_results: int, cutoff_date: str) -> list[dict]:
         if intervention_mod:
             for intv in intervention_mod.get("interventions", []):
                 interventions.append(intv.get("name", ""))
+
+        # Skip Phase 1 / Early Phase 1 trials
+        phases_upper = [p.upper().replace(" ", "") for p in phases]
+        if any(p in ("PHASE1", "EARLYPHASE1") for p in phases_upper):
+            continue
 
         trials.append({
             "title": title,

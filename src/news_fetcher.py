@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser as dateparser
 
-from src.config import NEWS_FEEDS, LOOKBACK_DAYS
+from src.config import NEWS_FEEDS, LOOKBACK_DAYS, RELEVANCE_REQUIRED_KEYWORDS, EXCLUSION_KEYWORDS
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +23,17 @@ def _matches_keywords(text: str, keywords: list[str]) -> bool:
     """Check if text contains any of the given keywords (case-insensitive)."""
     text_lower = text.lower()
     return any(kw.lower() in text_lower for kw in keywords)
+
+
+def _is_relevant(text: str) -> bool:
+    """Verify article is about MASH/NASH/fatty liver disease."""
+    return _matches_keywords(text, RELEVANCE_REQUIRED_KEYWORDS)
+
+
+def _should_exclude(text: str) -> bool:
+    """Exclude animal studies, cell biology, phase 1, and preclinical content."""
+    text_lower = text.lower()
+    return any(kw.lower() in text_lower for kw in EXCLUSION_KEYWORDS)
 
 
 def _parse_date(date_str: str) -> Optional[datetime]:
@@ -90,6 +101,14 @@ def fetch_rss_feed(feed_config: dict, cutoff: datetime) -> list[dict]:
         # Filter by keywords in title or description
         combined = f"{title} {description}"
         if not _matches_keywords(combined, keywords):
+            continue
+
+        # Strict relevance check: must mention MASH/NASH/fatty liver
+        if not _is_relevant(combined):
+            continue
+
+        # Exclude animal studies, cell biology, phase 1
+        if _should_exclude(combined):
             continue
 
         articles.append({
