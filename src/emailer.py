@@ -1,5 +1,7 @@
 """Email sending module for the MASH Newsletter."""
 
+from __future__ import annotations
+
 import logging
 import smtplib
 from email.mime.multipart import MIMEMultipart
