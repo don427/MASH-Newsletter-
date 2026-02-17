@@ -113,7 +113,7 @@ def render_newsletter(
     logo_uri = _image_to_data_uri(LOGO_PATH)
 
     html = template.render(
-        title=f"MASH Weekly Intelligence - {now.strftime('%b %d, %Y')}",
+        title=f"MASH Intelligence Report - {now.strftime('%b %d, %Y')}",
         date_range=date_range,
         issue_number=_issue_number(),
         executive_summary=executive_summary,
@@ -142,7 +142,7 @@ def render_plain_text(
     """Render a plain-text version of the newsletter for email fallback."""
     lines = []
     lines.append("=" * 60)
-    lines.append("MASH WEEKLY INTELLIGENCE")
+    lines.append("MASH INTELLIGENCE REPORT")
     lines.append("From the Desk of Dr. Don Lazas")
     lines.append("Digestive Health Research | Nashville, TN")
     lines.append(f"Issue #{_issue_number()} - {datetime.now(timezone.utc).strftime('%B %d, %Y')}")

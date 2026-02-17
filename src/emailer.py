@@ -50,7 +50,7 @@ def send_newsletter(
 
     if subject is None:
         date_str = datetime.now(timezone.utc).strftime("%b %d, %Y")
-        subject = f"MASH Weekly Intelligence - {date_str}"
+        subject = f"MASH Intelligence Report - {date_str}"
 
     # Sanitise every string that touches the email – non-breaking spaces (\xa0)
     # and other invisible Unicode can creep in from web-scraped content, secrets

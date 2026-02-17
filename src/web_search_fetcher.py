@@ -271,42 +271,135 @@ def get_curated_publications() -> list[dict]:
 
 
 def get_curated_trials() -> list[dict]:
-    """Return curated clinical trial items gathered from web search — actively recruiting only."""
+    """Return curated clinical trial items gathered from web search — Phase 2+ MASH trials."""
     return [
+        # --- Pegozafermin (89bio) ---
         {
-            "title": "Pegozafermin Phase 3 Trial in MASH with Fibrosis (F2-F3)",
-            "link": "https://clinicaltrials.gov/study/NCT06216067",
-            "nct_id": "NCT06216067",
+            "title": "Pegozafermin Phase 3 ENLIGHTEN-Fibrosis Trial in MASH (F2-F3)",
+            "link": "https://clinicaltrials.gov/study/NCT06318169",
+            "nct_id": "NCT06318169",
             "status": "Recruiting",
             "sponsor": "89bio, Inc.",
             "phase": "Phase 3",
             "conditions": ["MASH", "Liver Fibrosis"],
             "interventions": ["Pegozafermin (FGF21 analogue)"],
             "description": (
-                "Phase 3 trial of pegozafermin, an FGF21 analogue with Breakthrough Therapy "
-                "designation, for MASH with F2-F3 fibrosis. Differentiated mechanism targeting "
-                "metabolic regulation via fibroblast growth factor 21 pathway. 89bio is "
-                "aiming to stand out against GLP-1 and THR-beta agonists."
+                "Phase 3 ENLIGHTEN-Fibrosis trial of pegozafermin, an FGF21 analogue with "
+                "Breakthrough Therapy designation, for MASH with F2-F3 fibrosis. ~1,350 "
+                "patients. Differentiated mechanism targeting metabolic regulation via "
+                "fibroblast growth factor 21 pathway."
             ),
             "date": "2026-02-01",
             "source": "ClinicalTrials.gov",
             "type": "clinical_trial",
         },
         {
+            "title": "Pegozafermin Phase 3 ENLIGHTEN-Cirrhosis Trial in MASH (F4)",
+            "link": "https://clinicaltrials.gov/study/NCT06419374",
+            "nct_id": "NCT06419374",
+            "status": "Recruiting",
+            "sponsor": "89bio, Inc.",
+            "phase": "Phase 3",
+            "conditions": ["MASH", "Compensated Cirrhosis"],
+            "interventions": ["Pegozafermin (FGF21 analogue)"],
+            "description": (
+                "Phase 3 ENLIGHTEN-Cirrhosis trial of pegozafermin in patients with "
+                "compensated cirrhosis due to MASH (F4 fibrosis). ~760 patients. "
+                "Assessing efficacy and safety of FGF21-based therapy in the most "
+                "advanced non-decompensated MASH population."
+            ),
+            "date": "2026-02-01",
+            "source": "ClinicalTrials.gov",
+            "type": "clinical_trial",
+        },
+        # --- Efruxifermin (Akero / Novo Nordisk) ---
+        {
+            "title": "Efruxifermin Phase 3 SYNCHRONY Histology Trial in MASH (F2-F3)",
+            "link": "https://clinicaltrials.gov/study/NCT06215716",
+            "nct_id": "NCT06215716",
+            "status": "Recruiting",
+            "sponsor": "Akero Therapeutics / Novo Nordisk",
+            "phase": "Phase 3",
+            "conditions": ["MASH", "Liver Fibrosis"],
+            "interventions": ["Efruxifermin (Fc-FGF21 analogue)"],
+            "description": (
+                "Phase 3 SYNCHRONY Histology trial of efruxifermin, a bivalent Fc-FGF21 "
+                "analogue, in MASH with F2-F3 fibrosis. ~1,650 patients at ~300 sites. "
+                "Follows positive HARMONY Phase 2b results showing fibrosis improvement "
+                "and MASH resolution. Novo Nordisk acquired Akero in 2024."
+            ),
+            "date": "2026-02-10",
+            "source": "ClinicalTrials.gov",
+            "type": "clinical_trial",
+        },
+        {
+            "title": "Efruxifermin Phase 3 SYNCHRONY Outcomes Trial in MASH Cirrhosis (F4)",
+            "link": "https://clinicaltrials.gov/study/NCT06528314",
+            "nct_id": "NCT06528314",
+            "status": "Recruiting",
+            "sponsor": "Akero Therapeutics / Novo Nordisk",
+            "phase": "Phase 3",
+            "conditions": ["MASH", "Compensated Cirrhosis"],
+            "interventions": ["Efruxifermin (Fc-FGF21 analogue)"],
+            "description": (
+                "Phase 3 SYNCHRONY Outcomes trial of efruxifermin in compensated MASH "
+                "cirrhosis (F4). ~1,000+ patients at 155+ sites. Follows SYMMETRY Phase 2b "
+                "results (NEJM 2025) showing fibrosis reduction in cirrhotic patients."
+            ),
+            "date": "2026-02-10",
+            "source": "ClinicalTrials.gov",
+            "type": "clinical_trial",
+        },
+        {
+            "title": "Efruxifermin Phase 3 SYNCHRONY Real-World Trial in MASH",
+            "link": "https://clinicaltrials.gov/study/NCT06161571",
+            "nct_id": "NCT06161571",
+            "status": "Active, not recruiting",
+            "sponsor": "Akero Therapeutics / Novo Nordisk",
+            "phase": "Phase 3",
+            "conditions": ["MASH"],
+            "interventions": ["Efruxifermin (Fc-FGF21 analogue)"],
+            "description": (
+                "Phase 3 SYNCHRONY Real-World trial. Double-blind enrollment completed "
+                "January 2025 (601 patients). Evaluating efruxifermin using non-invasive "
+                "tests in a real-world clinical setting. Results expected first half 2026."
+            ),
+            "date": "2026-02-10",
+            "source": "ClinicalTrials.gov",
+            "type": "clinical_trial",
+        },
+        # --- Survodutide (Boehringer Ingelheim / Zealand) ---
+        {
             "title": "Survodutide Phase 3 LIVERAGE Trial in MASH with Fibrosis (F2-F3)",
-            "link": "https://clinicaltrials.gov/study/NCT06528808",
-            "nct_id": "NCT06528808",
+            "link": "https://clinicaltrials.gov/study/NCT06632444",
+            "nct_id": "NCT06632444",
             "status": "Recruiting",
             "sponsor": "Boehringer Ingelheim / Zealand Pharma",
             "phase": "Phase 3",
             "conditions": ["MASH", "Liver Fibrosis"],
             "interventions": ["Survodutide (GLP-1/glucagon dual agonist)"],
             "description": (
-                "Phase 3 LIVERAGE trial of survodutide, a dual GLP-1/glucagon receptor agonist "
-                "with FDA Breakthrough Therapy and Fast Track designations. Phase 2: 83% MASH "
-                "improvement vs 18.2% placebo; 52.3% fibrosis improvement. Evaluating MASH "
-                "resolution, fibrosis improvement, and long-term liver outcomes. "
-                "Completion estimated June 2029."
+                "Phase 3 LIVERAGE trial of survodutide with FDA Breakthrough Therapy and "
+                "Fast Track designations. ~1,800 patients. Phase 2: 83% MASH improvement "
+                "vs 18.2% placebo; 52.3% fibrosis improvement. Evaluating MASH resolution, "
+                "fibrosis improvement, and long-term liver outcomes."
+            ),
+            "date": "2026-02-09",
+            "source": "ClinicalTrials.gov",
+            "type": "clinical_trial",
+        },
+        {
+            "title": "Survodutide Phase 3 LIVERAGE-Cirrhosis Trial in MASH (F4)",
+            "link": "https://clinicaltrials.gov/study/NCT06632457",
+            "nct_id": "NCT06632457",
+            "status": "Recruiting",
+            "sponsor": "Boehringer Ingelheim / Zealand Pharma",
+            "phase": "Phase 3",
+            "conditions": ["MASH", "Compensated Cirrhosis"],
+            "interventions": ["Survodutide (GLP-1/glucagon dual agonist)"],
+            "description": (
+                "Phase 3 LIVERAGE-Cirrhosis trial evaluating survodutide in MASH patients "
+                "with compensated cirrhosis (F4). Companion study to the F2-F3 LIVERAGE trial."
             ),
             "date": "2026-02-09",
             "source": "ClinicalTrials.gov",
@@ -322,45 +415,72 @@ def get_curated_trials() -> list[dict]:
             "conditions": ["Obesity", "MASH"],
             "interventions": ["Survodutide (GLP-1/glucagon dual agonist)"],
             "description": (
-                "Phase 3 trial evaluating survodutide in adults living with obesity or overweight "
-                "and confirmed or presumed MASH. Assessing liver fat reduction and weight loss. "
-                "Part of the broader LIVERAGE program."
+                "Phase 3 trial evaluating survodutide in adults with obesity or overweight "
+                "and confirmed or presumed MASH. Assessing liver fat reduction and weight "
+                "loss. Part of the broader LIVERAGE program."
             ),
             "date": "2026-02-09",
             "source": "ClinicalTrials.gov",
             "type": "clinical_trial",
         },
+        # --- Semaglutide (Novo Nordisk) ---
         {
-            "title": "Retatrutide Phase 3 Trial in MASH / Fatty Liver Disease",
-            "link": "https://clinicaltrials.gov/study/NCT06419088",
-            "nct_id": "NCT06419088",
-            "status": "Recruiting",
-            "sponsor": "Eli Lilly",
+            "title": "Semaglutide Phase 3 ESSENCE Trial in MASH with Fibrosis (F2-F3)",
+            "link": "https://clinicaltrials.gov/study/NCT04822181",
+            "nct_id": "NCT04822181",
+            "status": "Active, not recruiting",
+            "sponsor": "Novo Nordisk",
             "phase": "Phase 3",
-            "conditions": ["MASH", "Fatty Liver Disease"],
-            "interventions": ["Retatrutide (triple GIP/GLP-1/glucagon agonist)"],
+            "conditions": ["MASH", "Liver Fibrosis"],
+            "interventions": ["Semaglutide 2.4 mg (GLP-1 receptor agonist)"],
             "description": (
-                "Phase 3 trial of retatrutide, a triple receptor agonist (GIP, GLP-1, glucagon). "
-                "Phase 2 data showed ~85% of obese participants with fatty liver disease had "
-                "significant liver fat reduction. First triple agonist in MASH Phase 3."
+                "Phase 3 ESSENCE trial (1,197 patients, 253 sites, 37 countries). Part 1 "
+                "results (NEJM 2025): MASH resolution without worsening fibrosis in 62.9% "
+                "(semaglutide) vs 34.3% (placebo). Part 2 assessing clinical outcomes "
+                "over 240 weeks is ongoing."
             ),
-            "date": "2026-01-10",
+            "date": "2026-02-01",
             "source": "ClinicalTrials.gov",
             "type": "clinical_trial",
         },
+        # --- Tirzepatide / Retatrutide (Eli Lilly) ---
         {
-            "title": "Pegozafermin Phase 3 Trial in Compensated MASH Cirrhosis (F4)",
+            "title": "Tirzepatide & Retatrutide Phase 3 SYNERGY-Outcomes Trial in MASLD",
+            "link": "https://clinicaltrials.gov/study/NCT07165028",
+            "nct_id": "NCT07165028",
+            "status": "Recruiting",
+            "sponsor": "Eli Lilly",
+            "phase": "Phase 3",
+            "conditions": ["MASLD", "MASH"],
+            "interventions": [
+                "Tirzepatide (GIP/GLP-1 dual agonist)",
+                "Retatrutide (triple GIP/GLP-1/glucagon agonist)",
+            ],
+            "description": (
+                "Phase 3 SYNERGY-Outcomes master protocol evaluating BOTH tirzepatide and "
+                "retatrutide vs placebo for prevention of major adverse liver outcomes in "
+                "high-risk MASLD. ~4,500 adults over ~224 weeks. Uses non-invasive tests "
+                "rather than liver biopsy."
+            ),
+            "date": "2026-01-15",
+            "source": "ClinicalTrials.gov",
+            "type": "clinical_trial",
+        },
+        # --- Resmetirom (Madrigal) ---
+        {
+            "title": "Resmetirom Phase 3 MAESTRO-NASH-OUTCOMES Trial in MASH Cirrhosis",
             "link": "https://clinicaltrials.gov/study/NCT05500222",
             "nct_id": "NCT05500222",
-            "status": "Recruiting",
-            "sponsor": "89bio, Inc.",
+            "status": "Active, not recruiting",
+            "sponsor": "Madrigal Pharmaceuticals",
             "phase": "Phase 3",
             "conditions": ["MASH", "Compensated Cirrhosis"],
-            "interventions": ["Pegozafermin (FGF21 analogue)"],
+            "interventions": ["Resmetirom / Rezdiffra (THR-beta agonist)"],
             "description": (
-                "Phase 3 trial evaluating pegozafermin in patients with compensated cirrhosis "
-                "due to MASH (biopsy-confirmed F4 fibrosis). Assessing efficacy and safety of "
-                "FGF21-based therapy in the most advanced non-decompensated MASH population."
+                "Phase 3 MAESTRO-NASH-OUTCOMES trial — FDA-required confirmatory outcomes "
+                "study for Rezdiffra's accelerated approval. Enrollment completed Oct 2024 "
+                "(845 patients with compensated MASH cirrhosis). Evaluating major adverse "
+                "liver outcomes. Data expected 2026-2027."
             ),
             "date": "2026-02-01",
             "source": "ClinicalTrials.gov",

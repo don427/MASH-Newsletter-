@@ -25,9 +25,9 @@
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
   }
 
-  /* Header */
+  /* Header — DHR teal palette */
   .header {
-    background: linear-gradient(135deg, #0f2b46 0%, #1a5276 40%, #2980b9 100%);
+    background: linear-gradient(135deg, #1B3C4A 0%, #2D5F70 40%, #4A7D8C 100%);
     color: #ffffff;
     padding: 40px 36px 32px;
     position: relative;
@@ -55,7 +55,7 @@
   }
   .header-label {
     display: inline-block;
-    background: rgba(255,255,255,0.15);
+    background: rgba(227,99,43,0.25);
     color: #ffffff;
     font-size: 11px;
     font-weight: 700;
@@ -101,8 +101,8 @@
     height: 56px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #2980b9;
-    box-shadow: 0 2px 6px rgba(41,128,185,0.15);
+    border: 2px solid #E3632B;
+    box-shadow: 0 2px 6px rgba(227,99,43,0.15);
     flex-shrink: 0;
   }
   .desk-info {
@@ -130,13 +130,17 @@
     font-weight: 500;
     margin: 0;
   }
+  .desk-logo-link {
+    flex-shrink: 0;
+    margin-left: auto;
+    text-decoration: none;
+  }
   .desk-logo {
     height: 48px;
     width: auto;
     max-width: 200px;
     object-fit: contain;
-    flex-shrink: 0;
-    margin-left: auto;
+    display: block;
   }
 
   /* Stats bar */
@@ -165,23 +169,23 @@
     letter-spacing: 0.8px;
     color: #718096;
   }
-  .stat-news .stat-number { color: #2b6cb0; }
-  .stat-pubs .stat-number { color: #9b59b6; }
-  .stat-trials .stat-number { color: #27ae60; }
+  .stat-news .stat-number { color: #E3632B; }
+  .stat-pubs .stat-number { color: #4A7D8C; }
+  .stat-trials .stat-number { color: #2D5F70; }
 
   /* Summary */
   .summary-box {
     margin: 24px 28px;
-    background: linear-gradient(135deg, #ebf5fb 0%, #f4ecf7 100%);
+    background: linear-gradient(135deg, #D8EBF0 0%, #FDE8DD 100%);
     border-radius: 10px;
     padding: 22px 24px;
-    border-left: 5px solid #2980b9;
+    border-left: 5px solid #E3632B;
   }
   .summary-box h2 {
     margin: 0 0 10px 0;
     font-size: 16px;
     font-weight: 700;
-    color: #1a5276;
+    color: #1B3C4A;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -216,9 +220,9 @@
     font-size: 18px;
     flex-shrink: 0;
   }
-  .icon-news { background: #dbeafe; }
-  .icon-pubs { background: #ede9fe; }
-  .icon-trials { background: #d1fae5; }
+  .icon-news { background: #FDE8DD; }
+  .icon-pubs { background: #D8EBF0; }
+  .icon-trials { background: #F5EDE5; }
   .section-header h2 {
     margin: 0;
     font-size: 19px;
@@ -243,7 +247,7 @@
     margin-bottom: 14px;
     background: #ffffff;
     transition: all 0.2s ease;
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid #E3632B;
   }
   .news-card:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -256,11 +260,11 @@
     line-height: 1.45;
   }
   .news-card h3 a {
-    color: #1e40af;
+    color: #1B3C4A;
     text-decoration: none;
   }
   .news-card h3 a:hover {
-    color: #1d4ed8;
+    color: #2D5F70;
     text-decoration: underline;
   }
 
@@ -271,7 +275,7 @@
     padding: 18px 20px;
     margin-bottom: 14px;
     background: #ffffff;
-    border-left: 4px solid #8b5cf6;
+    border-left: 4px solid #4A7D8C;
     transition: all 0.2s ease;
   }
   .pub-card:hover {
@@ -285,7 +289,7 @@
     line-height: 1.45;
   }
   .pub-card h3 a {
-    color: #6d28d9;
+    color: #2D5F70;
     text-decoration: none;
   }
   .pub-card h3 a:hover {
@@ -319,12 +323,12 @@
     letter-spacing: 0.4px;
   }
   .badge-type {
-    background: #ede9fe;
-    color: #6d28d9;
+    background: #D8EBF0;
+    color: #2D5F70;
   }
   .badge-rct {
-    background: #dbeafe;
-    color: #1e40af;
+    background: #FDE8DD;
+    color: #C05020;
   }
 
   .desc {
@@ -347,7 +351,7 @@
     padding: 18px 20px;
     margin-bottom: 14px;
     background: #ffffff;
-    border-left: 4px solid #10b981;
+    border-left: 4px solid #E3632B;
     transition: all 0.2s ease;
   }
   .trial-card:hover {
@@ -361,7 +365,7 @@
     line-height: 1.45;
   }
   .trial-card h3 a {
-    color: #047857;
+    color: #1B3C4A;
     text-decoration: none;
   }
   .trial-card h3 a:hover {
@@ -387,8 +391,8 @@
     color: #334155;
   }
   .tag-phase {
-    background: #dbeafe;
-    color: #1e40af;
+    background: #D8EBF0;
+    color: #2D5F70;
   }
   .status-badge {
     display: inline-flex;
@@ -441,9 +445,9 @@
     margin: 8px 28px;
   }
 
-  /* Footer */
+  /* Footer — dark teal */
   .footer {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    background: linear-gradient(135deg, #1B3C4A 0%, #0F2028 100%);
     color: #94a3b8;
     text-align: center;
     padding: 28px 32px;
@@ -453,11 +457,11 @@
   .footer-brand {
     font-size: 14px;
     font-weight: 700;
-    color: #e2e8f0;
+    color: #E8DFD2;
     margin-bottom: 8px;
   }
   .footer a {
-    color: #93c5fd;
+    color: #7BB5C5;
     text-decoration: none;
   }
   .footer a:hover {
@@ -497,8 +501,8 @@
 
   <!-- Header -->
   <div class="header">
-    <div class="header-label">Weekly Intelligence Report</div>
-    <h1>MASH Weekly Intelligence</h1>
+    <div class="header-label">Intelligence Report</div>
+    <h1>MASH Intelligence Report</h1>
     <p class="subtitle">Metabolic Dysfunction-Associated Steatohepatitis</p>
     <p class="date-line">{{ date_range }} &#8226; Issue #{{ issue_number }}</p>
   </div>
@@ -515,7 +519,9 @@
         <p class="desk-org">Digestive Health Research &#8226; Nashville, TN</p>
       </div>
       {% if logo_uri %}
-      <img src="{{ logo_uri }}" alt="Digestive Health Research" class="desk-logo">
+      <a href="https://www.digestivehealthresearch.com" class="desk-logo-link" target="_blank" rel="noopener">
+        <img src="{{ logo_uri }}" alt="Digestive Health Research" class="desk-logo">
+      </a>
       {% endif %}
     </div>
   </div>
@@ -623,7 +629,7 @@
         <span class="trial-tag tag-nct">{{ trial.nct_id }}</span>
         <span class="trial-tag tag-phase">{{ trial.phase }}</span>
         {% set status_class = 'status-other' %}
-        {% if 'Recruiting' in trial.status %}{% set status_class = 'status-recruiting' %}
+        {% if 'Recruiting' in trial.status and 'Not' not in trial.status %}{% set status_class = 'status-recruiting' %}
         {% elif 'Completed' in trial.status %}{% set status_class = 'status-completed' %}
         {% elif 'Active' in trial.status %}{% set status_class = 'status-active' %}{% endif %}
         <span class="status-badge {{ status_class }}">{{ trial.status }}</span>
@@ -646,7 +652,7 @@
 
   <!-- Footer -->
   <div class="footer">
-    <div class="footer-brand">MASH Weekly Intelligence</div>
+    <div class="footer-brand">MASH Intelligence Report</div>
     <p>Dr. Don Lazas &#8226; Digestive Health Research &#8226; Nashville, TN</p>
     <p>Automated by NueCura Newsletter Agent</p>
     <p>Data sourced from <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>,
