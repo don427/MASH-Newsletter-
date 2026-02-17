@@ -118,6 +118,22 @@ def get_curated_news() -> list[dict]:
             "type": "industry_news",
         },
         {
+            "title": "Akero/Novo Nordisk's Efruxifermin Advances Three Phase 3 SYNCHRONY Trials in MASH",
+            "link": "https://www.fiercebiotech.com/biotech/novo-nordisk-akero-efruxifermin-synchrony-phase3-mash",
+            "description": (
+                "Efruxifermin, the bivalent Fc-FGF21 analogue acquired by Novo Nordisk through its "
+                "$1.85B acquisition of Akero Therapeutics, is advancing across three Phase 3 SYNCHRONY "
+                "trials: Histology (F2-F3, ~1,650 patients), Outcomes (F4 cirrhosis, 1,000+ patients), "
+                "and Real-World (601 patients, enrollment completed). Phase 2b HARMONY data showed 41% "
+                "fibrosis improvement in F2-F3 patients; SYMMETRY data (NEJM 2025) demonstrated efficacy "
+                "in F4 cirrhosis. Efruxifermin is considered a leading FGF21-class competitor alongside "
+                "resmetirom and semaglutide in the rapidly growing MASH therapeutics market."
+            ),
+            "date": "2026-02-10",
+            "source": "Fierce Biotech / Novo Nordisk",
+            "type": "industry_news",
+        },
+        {
             "title": "89bio's Pegozafermin Advances in Phase III, Aiming to Stand Out in MASH Field",
             "link": "https://www.genengnews.com/topics/drug-discovery/89bios-mash-drug-begins-phase-iii-aiming-to-stand-out-in-growing-field/",
             "description": (

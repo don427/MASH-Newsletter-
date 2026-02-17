@@ -27,7 +27,7 @@
 
   /* Header — DHR teal palette */
   .header {
-    background: linear-gradient(135deg, #1B3C4A 0%, #2D5F70 40%, #4A7D8C 100%);
+    background: linear-gradient(135deg, #345E6E 0%, #4D7F90 40%, #5D8B9A 100%);
     color: #ffffff;
     padding: 40px 36px 32px;
     position: relative;
@@ -55,7 +55,7 @@
   }
   .header-label {
     display: inline-block;
-    background: rgba(227,99,43,0.25);
+    background: rgba(228,106,44,0.25);
     color: #ffffff;
     font-size: 11px;
     font-weight: 700;
@@ -101,8 +101,8 @@
     height: 56px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #E3632B;
-    box-shadow: 0 2px 6px rgba(227,99,43,0.15);
+    border: 2px solid #E46A2C;
+    box-shadow: 0 2px 6px rgba(228,106,44,0.15);
     flex-shrink: 0;
   }
   .desk-info {
@@ -134,6 +134,19 @@
     flex-shrink: 0;
     margin-left: auto;
     text-decoration: none;
+    background: #ffffff;
+    border: 2px solid #E46A2C;
+    border-radius: 10px;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    cursor: pointer;
+  }
+  .desk-logo-link:hover {
+    background: #FDE8DD;
+    border-color: #C55A25;
+    box-shadow: 0 3px 10px rgba(228,106,44,0.2);
+    transform: translateY(-1px);
   }
   .desk-logo {
     height: 48px;
@@ -169,9 +182,9 @@
     letter-spacing: 0.8px;
     color: #718096;
   }
-  .stat-news .stat-number { color: #E3632B; }
-  .stat-pubs .stat-number { color: #4A7D8C; }
-  .stat-trials .stat-number { color: #2D5F70; }
+  .stat-news .stat-number { color: #E46A2C; }
+  .stat-pubs .stat-number { color: #5D8B9A; }
+  .stat-trials .stat-number { color: #3D7585; }
 
   /* Summary */
   .summary-box {
@@ -179,13 +192,13 @@
     background: linear-gradient(135deg, #D8EBF0 0%, #FDE8DD 100%);
     border-radius: 10px;
     padding: 22px 24px;
-    border-left: 5px solid #E3632B;
+    border-left: 5px solid #E46A2C;
   }
   .summary-box h2 {
     margin: 0 0 10px 0;
     font-size: 16px;
     font-weight: 700;
-    color: #1B3C4A;
+    color: #2A5A6A;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -247,7 +260,7 @@
     margin-bottom: 14px;
     background: #ffffff;
     transition: all 0.2s ease;
-    border-left: 4px solid #E3632B;
+    border-left: 4px solid #E46A2C;
   }
   .news-card:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -260,11 +273,11 @@
     line-height: 1.45;
   }
   .news-card h3 a {
-    color: #1B3C4A;
+    color: #2A5A6A;
     text-decoration: none;
   }
   .news-card h3 a:hover {
-    color: #2D5F70;
+    color: #3D7585;
     text-decoration: underline;
   }
 
@@ -275,7 +288,7 @@
     padding: 18px 20px;
     margin-bottom: 14px;
     background: #ffffff;
-    border-left: 4px solid #4A7D8C;
+    border-left: 4px solid #5D8B9A;
     transition: all 0.2s ease;
   }
   .pub-card:hover {
@@ -289,7 +302,7 @@
     line-height: 1.45;
   }
   .pub-card h3 a {
-    color: #2D5F70;
+    color: #3D7585;
     text-decoration: none;
   }
   .pub-card h3 a:hover {
@@ -324,11 +337,11 @@
   }
   .badge-type {
     background: #D8EBF0;
-    color: #2D5F70;
+    color: #3D7585;
   }
   .badge-rct {
     background: #FDE8DD;
-    color: #C05020;
+    color: #C55A25;
   }
 
   .desc {
@@ -351,7 +364,7 @@
     padding: 18px 20px;
     margin-bottom: 14px;
     background: #ffffff;
-    border-left: 4px solid #E3632B;
+    border-left: 4px solid #E46A2C;
     transition: all 0.2s ease;
   }
   .trial-card:hover {
@@ -365,7 +378,7 @@
     line-height: 1.45;
   }
   .trial-card h3 a {
-    color: #1B3C4A;
+    color: #2A5A6A;
     text-decoration: none;
   }
   .trial-card h3 a:hover {
@@ -392,7 +405,7 @@
   }
   .tag-phase {
     background: #D8EBF0;
-    color: #2D5F70;
+    color: #3D7585;
   }
   .status-badge {
     display: inline-flex;
@@ -447,7 +460,7 @@
 
   /* Footer — dark teal */
   .footer {
-    background: linear-gradient(135deg, #1B3C4A 0%, #0F2028 100%);
+    background: linear-gradient(135deg, #345E6E 0%, #1E3845 100%);
     color: #94a3b8;
     text-align: center;
     padding: 28px 32px;
@@ -461,7 +474,7 @@
     margin-bottom: 8px;
   }
   .footer a {
-    color: #7BB5C5;
+    color: #8BBFC8;
     text-decoration: none;
   }
   .footer a:hover {
@@ -493,6 +506,7 @@
     .desk-photo { width: 44px; height: 44px; }
     .desk-name { font-size: 14px; }
     .desk-logo { height: 36px; max-width: 120px; }
+    .desk-logo-link { padding: 6px 8px; border-radius: 8px; }
   }
 </style>
 </head>
